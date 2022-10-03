@@ -1,6 +1,7 @@
 using System.Reflection;
 using Stories.Abstractions;
 using Stories.Activities;
+using Stories.Events;
 
 namespace Stories.Graphing;
 
