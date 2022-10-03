@@ -57,4 +57,16 @@ public class GraphGenerator
         args.VertexFormat.Shape = GraphvizVertexShape.Ellipse;
     }
 
+    /// <summary>
+    /// This is the method
+    /// </summary>
+    /// <returns></returns>
+    public string CreateDotFile()
+    {
+        var algo = new GraphvizAlgorithm<Vertex, Edge<Vertex>>(_graph);
+        //Call the formatter
+        algo.FormatVertex += VertexStyler;
+        return algo.Generate();
+    }
+
 }
