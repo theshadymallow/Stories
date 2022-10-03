@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Stories.Abstractions\Stories.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Events" />
+  </ItemGroup>
+
 </Project>

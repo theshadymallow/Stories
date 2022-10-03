@@ -1,3 +1,5 @@
+using Stories.Abstractions;
+
 namespace Stories.Graphing;
 
 public static class GraphStateMachineExtensions
