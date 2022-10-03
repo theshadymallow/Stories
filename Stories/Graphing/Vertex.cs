@@ -1,5 +1,7 @@
 namespace Stories.Graphing;
 
+using System;
+
 [Serializable]
 public class Vertex :
     IEquatable<Vertex>

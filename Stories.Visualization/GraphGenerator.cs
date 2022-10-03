@@ -1,11 +1,14 @@
-﻿using Stories.Abstractions;
-
+﻿
 namespace Stories.Visualization;
 
-using Stories.Graphing;
+using System;
+
 using QuikGraph;
 using QuikGraph.Graphviz;
 using QuikGraph.Graphviz.Dot;
+
+using Stories.Abstractions;
+using Graphing;
 
 public class GraphGenerator
 {
@@ -29,7 +32,7 @@ public class GraphGenerator
         args.VertexFormat.Label = args.Vertex.Title;
         
         //Format the shape/font color/label of a graph's vertex if that vertex is an event
-        if (args.Vertex.VertexType = typeof(IEvent))
+        if (args.Vertex.VertexType == typeof(IEvent))
         {
             args.VertexFormat.FontColor = GraphvizColor.Black;
             args.VertexFormat.Shape = GraphvizVertexShape.Rectangle;
