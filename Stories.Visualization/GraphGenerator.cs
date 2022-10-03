@@ -1,4 +1,6 @@
-﻿namespace Stories.Visualization;
+﻿using Stories.Abstractions;
+
+namespace Stories.Visualization;
 
 using Stories.Graphing;
 using QuikGraph;
@@ -20,6 +22,39 @@ public class GraphGenerator
         graph.AddVertexRange(data.Vertices);
         graph.AddEdgeRange(data.Edges.Select(x => new Edge<Vertex>(x.From, x.To)));
         return graph;
+    }
+
+    static void VertexStyler(object sender, FormatVertexEventArgs<Vertex> args)
+    {
+        args.VertexFormat.Label = args.Vertex.Title;
+        
+        //Format the shape/font color/label of a graph's vertex if that vertex is an event
+        if (args.Vertex.VertexType = typeof(IEvent))
+        {
+            args.VertexFormat.FontColor = GraphvizColor.Black;
+            args.VertexFormat.Shape = GraphvizVertexShape.Rectangle;
+            
+            //If the vertex is an exception event (It will implement IEvent and Exception), style it accordingly
+            if (args.Vertex.TargetType != typeof(IEvent) && args.Vertex.TargetType != typeof(Exception))
+                args.VertexFormat.Label += "<" + args.Vertex.TargetType.Name + ">";
+        }
+
+        //If the vertex isn't an event, its the start or stop of the state machine. Format the matrix accordingly
+        switch (args.Vertex.Title)
+        {
+            case "Initial":
+                args.VertexFormat.FillColor = GraphvizColor.White;
+                break;
+            case "Final":
+                args.VertexFormat.FillColor = GraphvizColor.White;
+                break;
+            default:
+                args.VertexFormat.FillColor = GraphvizColor.White;
+                args.VertexFormat.FontColor = GraphvizColor.Black;
+                break;
+        }
+        
+        args.VertexFormat.Shape = GraphvizVertexShape.Ellipse;
     }
 
 }
