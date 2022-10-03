@@ -10,4 +10,8 @@
     <PackageReference Include="GreenPipes" Version="4.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Stories.Abstractions\Stories.Abstractions.csproj" />
+  </ItemGroup>
+
 </Project>
